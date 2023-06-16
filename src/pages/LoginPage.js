@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
 import { useRouter } from 'next/router';
 
 import { initializeApp } from 'firebase/app';
@@ -38,7 +38,7 @@ export default function LoginPage() {
 
   const signInWithGoogle = async () => {
     try {
-      const result = await signInWithPopup(auth, provider);
+      const result = await signInWithRedirect (auth, provider);
       const user = result.user;
       setUser(user);
       router.push('/HomePage');
