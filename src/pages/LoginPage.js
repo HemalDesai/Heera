@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getAuth, signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
 import { useRouter } from 'next/router';
+
 import { initializeApp } from 'firebase/app';
+import { useEffect } from 'react';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBu2u70wmf3WLG_T9NqEGMi2Yu4jP75fuo",
@@ -34,55 +37,63 @@ export default function LoginPage() {
     return () => unsubscribe();
   }, []);
 
-  const signInWithGoogle = () => {
-    signInWithRedirect(auth, provider)
-      .catch((error) => {
-        console.log(error);
-      });
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithRedirect(auth, provider);
+      const user = result.user;
+      setUser(user);
+      router.push('/HomePage');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <div className='boddy'>
-      <style jsx>{`
-        .boddy {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-          background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-          background-size: 400% 400%;
-          animation: gradient 15s ease infinite;
+    <div className='boddy' style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+      backgroundColor: 'red',
+  }}>
+    <style jsx>{`
+     .boddy{
+         background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+       background-size: 400% 400%;
+       animation: gradient 15s ease infinite;
+       height: 100vh;}
+       @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
         }
-        
-        @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
+        50% {
+          background-position: 100% 50%;
         }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
       `}</style>
-      <button
-        className='button-17'
-        onClick={signInWithGoogle}
-        style={{
-          fontWeight: 'lighter',
-          fontSize: '20px',
-          border: '1px solid #ccc',
-          padding: '2px 5px',
-          borderRadius: '10px',
-          backgroundColor: 'whitesmoke',
-          boxShadow: '0 5px 5px rgba(0,0,0,0.1)',
-          width: '200px',
-          height: '50px'
-        }}
+      <button className='button-17' onClick={signInWithGoogle}
+          style={{
+              fontWeight: 'lighter',
+              fontSize: '20px',
+              border: '1px solid #ccc',
+              padding: '2px 5px',
+              borderRadius: '10px',
+              backgroundColor: 'whitesmoke',
+              boxShadow: '0 5px 5px rgba(0,0,0,0.1)',
+              width: '200px',
+              height: '50px'
+          }}
       >
-        Sign in with Google
+          Sign ih Google
       </button>
-    </div>
+  </div>
+  
   );
 }
+
+
+
