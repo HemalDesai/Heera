@@ -36,15 +36,16 @@ export default function LoginPage() {
     return () => unsubscribe();
   }, []);
 
-  const signInWithGoogle = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      setUser(user);
-      router.push('/HomePage');
-    } catch (error) {
-      console.log(error);
-    }
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        router.push('/HomePage');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
