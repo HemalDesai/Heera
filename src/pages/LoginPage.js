@@ -1,9 +1,7 @@
-import { useState } from 'react';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { useState, useEffect } from 'react';
+import { getAuth, signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
 import { useRouter } from 'next/router';
-
 import { initializeApp } from 'firebase/app';
-import { useEffect } from 'react';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBu2u70wmf3WLG_T9NqEGMi2Yu4jP75fuo",
@@ -37,12 +35,7 @@ export default function LoginPage() {
   }, []);
 
   const signInWithGoogle = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        setUser(user);
-        router.push('/HomePage');
-      })
+    signInWithRedirect(auth, provider)
       .catch((error) => {
         console.log(error);
       });
