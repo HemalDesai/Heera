@@ -13,11 +13,22 @@
   
   .buttonContainer {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
     margin-bottom: 2rem;
   }
-  
+
+  @media only screen and (max-width: 767px) {
+    /* Add your CSS styles here */
+    .buttonContainer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+   
+  }
+
   
   .popupOverlay {
     position: fixed;

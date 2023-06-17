@@ -82,9 +82,9 @@ const HomePage = () => {
     <div>
    
       
-    <h1 style={{ marginLeft:'60px', fontWeight:'lighter', fontSize:'30px',
+    <h1 style={{ marginLeft:'60px', fontWeight:'lighter', fontSize:'30px', color:"#92a8c9"
   }}>Welcome {username}</h1> 
-     <h1 style={{ marginLeft:'60px', fontWeight:'lighter', fontSize:'30px',
+     <h1 style={{ marginLeft:'60px', fontWeight:'lighter', fontSize:'30px', color:"#92a8c9"
     }}>Select a month</h1> 
      
     <div style={gridStyles}>
@@ -101,7 +101,8 @@ const HomePage = () => {
       // add border radius
       borderRadius: '10px',
       // add background color
-      backgroundColor: 'whitesmoke',
+      backgroundColor: '#333',
+      color:"#92a8c9",
       //add box shadow
       boxShadow: '0 5px 5px rgba(0,0,0,0.1)',
       marginTop:'25px',
@@ -127,6 +128,13 @@ const HomePage = () => {
   
 >
 </Player>
+<div style={{display:"flex", justifyContent:"center", 
+    //bring this part to the bottom of the page
+     width:"100%", height:"50px", 
+    color:"#92a8c9", alignItems:"center",position: "fixed", bottom:"0",
+    }}>
+        <p>Made with ❤️ by Hemal</p>
+      </div>
       </div>
     
     
