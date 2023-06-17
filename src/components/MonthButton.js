@@ -16,6 +16,7 @@ const MonthButton = ({ label, link }) => {
           textAlign: 'center',
           textDecoration: 'none',
           fontSize: '18px',
+          
           // Media query for smaller screens
           '@media (max-width: 600px)': {
             width: '80%',
